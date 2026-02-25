@@ -20,65 +20,87 @@ background:url("https://cdn.discordapp.com/attachments/1446879355673509888/14476
 min-height:100vh;
 position:relative;
 color:white;
-overflow:hidden;
 }
 
-/* طبقة تغبيش */
 body::before{
 content:"";
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
+background:rgba(0,0,0,0.75);
 backdrop-filter:blur(10px);
 z-index:0;
 }
 
-.hero{
+.container{
 position:relative;
 z-index:1;
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+padding:60px 20px;
 text-align:center;
-padding:20px;
-animation:fadeIn 1.5s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(40px)}
-to{opacity:1;transform:translateY(0)}
 }
 
 /* لوقو */
 .logo{
-width:230px;
+width:220px;
 border-radius:50%;
 border:4px solid #00ccff;
-box-shadow:0 0 40px #00ccff, 0 0 80px #0088ff;
-margin-bottom:25px;
+box-shadow:0 0 40px #00ccff,0 0 80px #0088ff;
+margin-bottom:20px;
 transition:0.5s;
 }
 
 .logo:hover{
-transform:scale(1.1) rotate(3deg);
-box-shadow:0 0 60px #00ccff, 0 0 120px #0088ff;
+transform:scale(1.1);
 }
 
+/* عنوان */
 h1{
-font-size:60px;
+font-size:55px;
 font-weight:900;
 background:linear-gradient(90deg,#00ccff,#4ade80,#22d3ee);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
-/* صورة الاونر */
+.desc{
+color:#cbd5e1;
+font-size:20px;
+margin-bottom:40px;
+}
+
+/* كروت */
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+margin-top:30px;
+}
+
+.card{
+width:320px;
+padding:30px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-15px);
+box-shadow:0 0 50px rgba(0,204,255,0.6);
+}
+
+.card h2{
+color:#00ccff;
+margin-bottom:15px;
+}
+
+/* الأونر */
 .owner{
-margin-top:20px;
+margin-top:40px;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -104,12 +126,13 @@ margin-top:40px;
 padding:15px 50px;
 border-radius:50px;
 background:linear-gradient(90deg,#00ccff,#0088ff);
-color:#fff;
+color:white;
 font-weight:bold;
 text-decoration:none;
 font-size:20px;
 box-shadow:0 0 40px #0088ff;
 transition:0.3s;
+display:inline-block;
 }
 
 .btn:hover{
@@ -118,39 +141,58 @@ box-shadow:0 0 70px #00ccff;
 }
 
 footer{
-position:absolute;
-bottom:20px;
-width:100%;
-text-align:center;
+margin-top:60px;
 color:#94a3b8;
-font-size:14px;
-z-index:1;
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<div class="container">
 
 <img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476279552631246868/IMG_0600.png?ex=69a08bf9&is=699f3a79&hm=aa0a579016907cda3121f066930cf2135803bef6b1a196ec13aa348180eb07f3&" class="logo">
 
 <h1>بوت نسخ السيرفرات الاحترافي</h1>
+
+<p class="desc">
+بوت متكامل لإدارة ونسخ محتوى السيرفرات باحترافية عالية ⚡<br>
+نظام مجاني + بريميوم بقوة كاملة
+</p>
+
+<div class="cards">
+
+<div class="card">
+<h2>🆓 المميزات المجانية</h2>
+نسخ الإيموجيات<br>
+نسخ الملصقات<br>
+إضافة رياكشن تلقائي<br>
+إضافة خط تلقائي
+</div>
+
+<div class="card">
+<h2>👑 مميزات البريميوم</h2>
+نسخ سيرفر كامل مع الصلاحيات<br>
+استرجاع آخر نسخة احتياطية
+</div>
+
+</div>
 
 <div class="owner">
 <img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476280762239156335/IMG_0132.jpg?ex=69a08d19&is=699f3b99&hm=74cc307d7752f6961bb8ff7089c5f22a55ca194890528752ffad5406de3004ee&">
 <span>Owner Bot : @g5ta</span>
 </div>
 
-<a href="https://discord.com/oauth2/authorize?client_id=1475212341380387026&permissions=8&integration_type=0&scope=bot" class="btn" target="_blank">
+<a href="https://discord.com/oauth2/authorize?client_id=1475212341380387026&permissions=8&integration_type=0&scope=bot"
+class="btn" target="_blank">
 🚀 دعوة البوت الآن
 </a>
-
-</section>
 
 <footer>
 © 2026 Server Backup Ultra
 </footer>
+
+</div>
 
 </body>
 </html>
