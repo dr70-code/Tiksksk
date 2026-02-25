@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server Backup Ultra</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+/* خلفية متحركة */
+#particles{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* Hero */
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+animation:fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.logo{
+width:200px;
+margin-bottom:30px;
+filter:drop-shadow(0 0 40px #00ffcc);
+transition:0.4s;
+}
+
+.logo:hover{
+transform:scale(1.1) rotate(5deg);
+}
+
+h1{
+font-size:60px;
+font-weight:900;
+background:linear-gradient(90deg,#00ffcc,#22d3ee,#4ade80);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:15px;
+}
+
+.subtitle{
+color:#94a3b8;
+font-size:20px;
+margin-bottom:50px;
+}
+
+.cards{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+width:320px;
+padding:35px;
+border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 0 40px rgba(0,255,200,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.05);
+box-shadow:0 0 60px rgba(0,255,200,0.6);
+}
+
+.card h2{
+margin-bottom:15px;
+color:#00ffcc;
+}
+
+.btn{
+margin-top:50px;
+padding:15px 40px;
+border-radius:50px;
+background:linear-gradient(90deg,#00ffcc,#22d3ee);
+color:#000;
+font-weight:bold;
+text-decoration:none;
+font-size:18px;
+box-shadow:0 0 30px rgba(0,255,200,0.7);
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 60px rgba(0,255,200,1);
+}
+
+footer{
+margin-top:80px;
+padding:30px;
+color:#64748b;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<section class="hero">
+
+<img src="logo.png" class="logo">
+
+<h1>بوت نسخ السيرفرات الاحترافي</h1>
+<p class="subtitle">نسخ كامل • استرجاع فوري • أتمتة احترافية</p>
+
+<div class="cards">
+
+<div class="card">
+<h2>🆓 المجاني</h2>
+نسخ الإيموجيات<br>
+نسخ الملصقات<br>
+رياكشن تلقائي<br>
+خط تلقائي
+</div>
+
+<div class="card">
+<h2>👑 البريميوم</h2>
+نسخ سيرفر كامل بالصلاحيات<br>
+استرجاع آخر نسخة احتياطية
+</div>
+
+</div>
+
+<a href="#" class="btn">🚀 دعوة البوت الآن</a>
+
+<footer>
+© 2026 Server Backup Ultra
+</footer>
+
+</section>
+
+<script>
+// particles effect
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesArray = [];
+
+class Particle {
+constructor(){
+this.x = Math.random() * canvas.width;
+this.y = Math.random() * canvas.height;
+this.size = Math.random() * 3 + 1;
+this.speedX = Math.random() * 1 - 0.5;
+this.speedY = Math.random() * 1 - 0.5;
+}
+update(){
+this.x += this.speedX;
+this.y += this.speedY;
+if(this.x > canvas.width || this.x < 0) this.speedX *= -1;
+if(this.y > canvas.height || this.y < 0) this.speedY *= -1;
+}
+draw(){
+ctx.fillStyle = "#00ffcc";
+ctx.beginPath();
+ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+ctx.fill();
+}
+}
+
+function init(){
+particlesArray = [];
+for(let i=0;i<120;i++){
+particlesArray.push(new Particle());
+}
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particlesArray.forEach(p=>{
+p.update();
+p.draw();
+});
+requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+window.addEventListener("resize",()=>{
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+init();
+});
+</script>
+
+</body>
+</html>
