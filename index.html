@@ -4,69 +4,78 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Server Backup Ultra</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
 body{
 background:url("https://cdn.discordapp.com/attachments/1446879355673509888/1447653720304386313/reset_shop_psd.png?ex=699fe5d7&is=699e9457&hm=795085ba34f0ba871c4556bdab82100e6fe9e9a135112f4a8766920c34bb529e&") no-repeat center center/cover;
-min-height:100vh;
-position:relative;
 color:white;
+min-height:100vh;
+overflow-x:hidden;
+position:relative;
 }
 
+/* طبقة سينمائية */
 body::before{
 content:"";
-position:absolute;
+position:fixed;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.75);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
+z-index:0;
+}
+
+/* تأثير ضوء مع الماوس */
+.light{
+position:fixed;
+width:400px;
+height:400px;
+background:radial-gradient(circle,rgba(0,204,255,0.25) 0%, transparent 70%);
+pointer-events:none;
+transform:translate(-50%,-50%);
 z-index:0;
 }
 
 .container{
 position:relative;
 z-index:1;
-padding:60px 20px;
 text-align:center;
+padding:80px 20px;
+animation:fadeUp 1.5s ease;
 }
 
-/* لوقو */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* اللوقو */
 .logo{
-width:220px;
+width:240px;
 border-radius:50%;
 border:4px solid #00ccff;
-box-shadow:0 0 40px #00ccff,0 0 80px #0088ff;
-margin-bottom:20px;
-transition:0.5s;
+box-shadow:0 0 40px #00ccff,0 0 100px #0088ff;
+margin-bottom:25px;
+transition:.4s;
 }
+.logo:hover{transform:scale(1.08) rotate(2deg)}
 
-.logo:hover{
-transform:scale(1.1);
-}
-
-/* عنوان */
+/* العنوان */
 h1{
-font-size:55px;
+font-size:70px;
 font-weight:900;
 background:linear-gradient(90deg,#00ccff,#4ade80,#22d3ee);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-margin-bottom:15px;
+margin-bottom:20px;
 }
 
 .desc{
 color:#cbd5e1;
-font-size:20px;
-margin-bottom:40px;
+font-size:22px;
+margin-bottom:50px;
 }
 
 /* كروت */
@@ -74,23 +83,22 @@ margin-bottom:40px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:30px;
-margin-top:30px;
+gap:40px;
+margin-top:40px;
 }
 
 .card{
-width:320px;
-padding:30px;
-border-radius:20px;
+width:330px;
+padding:35px;
+border-radius:25px;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.1);
-transition:0.4s;
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,0.15);
+transition:.4s;
 }
-
 .card:hover{
-transform:translateY(-15px);
-box-shadow:0 0 50px rgba(0,204,255,0.6);
+transform:translateY(-15px) scale(1.05);
+box-shadow:0 0 60px rgba(0,204,255,.7);
 }
 
 .card h2{
@@ -100,54 +108,52 @@ margin-bottom:15px;
 
 /* الأونر */
 .owner{
-margin-top:40px;
-display:flex;
-flex-direction:column;
-align-items:center;
+margin-top:70px;
 }
-
 .owner img{
-width:90px;
-height:90px;
+width:110px;
+height:110px;
 border-radius:50%;
 border:3px solid #00ccff;
-box-shadow:0 0 25px #00ccff;
+box-shadow:0 0 30px #00ccff;
 margin-bottom:10px;
 }
-
 .owner span{
-color:#cbd5e1;
-font-size:18px;
+display:block;
+font-size:20px;
+color:#e2e8f0;
 }
 
 /* زر الدعوة */
 .btn{
-margin-top:40px;
-padding:15px 50px;
-border-radius:50px;
+margin-top:50px;
+padding:18px 60px;
+border-radius:60px;
 background:linear-gradient(90deg,#00ccff,#0088ff);
 color:white;
 font-weight:bold;
+font-size:22px;
 text-decoration:none;
-font-size:20px;
-box-shadow:0 0 40px #0088ff;
-transition:0.3s;
+box-shadow:0 0 50px #0088ff;
+transition:.3s;
 display:inline-block;
 }
-
 .btn:hover{
 transform:scale(1.1);
-box-shadow:0 0 70px #00ccff;
+box-shadow:0 0 80px #00ccff;
 }
 
 footer{
-margin-top:60px;
+margin-top:80px;
 color:#94a3b8;
+font-size:14px;
 }
 </style>
 </head>
 
 <body>
+
+<div class="light" id="light"></div>
 
 <div class="container">
 
@@ -156,8 +162,8 @@ color:#94a3b8;
 <h1>بوت نسخ السيرفرات الاحترافي</h1>
 
 <p class="desc">
-بوت متكامل لإدارة ونسخ محتوى السيرفرات باحترافية عالية ⚡<br>
-نظام مجاني + بريميوم بقوة كاملة
+نسخ • استرجاع • أتمتة • قوة كاملة لإدارة سيرفرك ⚡<br>
+نظام مجاني + بريميوم باحترافية مطلقة
 </p>
 
 <div class="cards">
@@ -166,13 +172,13 @@ color:#94a3b8;
 <h2>🆓 المميزات المجانية</h2>
 نسخ الإيموجيات<br>
 نسخ الملصقات<br>
-إضافة رياكشن تلقائي<br>
-إضافة خط تلقائي
+رياكشن تلقائي<br>
+خط تلقائي
 </div>
 
 <div class="card">
-<h2>👑 مميزات البريميوم</h2>
-نسخ سيرفر كامل مع الصلاحيات<br>
+<h2>👑 البريميوم</h2>
+نسخ سيرفر كامل بالصلاحيات<br>
 استرجاع آخر نسخة احتياطية
 </div>
 
@@ -193,6 +199,14 @@ class="btn" target="_blank">
 </footer>
 
 </div>
+
+<script>
+const light = document.getElementById("light");
+document.addEventListener("mousemove",(e)=>{
+light.style.left = e.pageX + "px";
+light.style.top = e.pageY + "px";
+});
+</script>
 
 </body>
 </html>
