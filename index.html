@@ -9,113 +9,162 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
 body{
-background:url("https://cdn.discordapp.com/attachments/1446879355673509888/1447653720304386313/reset_shop_psd.png?ex=699fe5d7&is=699e9457&hm=795085ba34f0ba871c4556bdab82100e6fe9e9a135112f4a8766920c34bb529e&") no-repeat center center/cover;
+background:#06121f;
 color:white;
-min-height:100vh;
 overflow-x:hidden;
-position:relative;
 }
 
-/* طبقة سينمائية */
-body::before{
-content:"";
+/* ====== Intro Loader ====== */
+#loader{
 position:fixed;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(12px);
-z-index:0;
+background:#000814;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+animation:fadeOut 1.5s ease forwards;
+animation-delay:2.5s;
+}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+
+.loader-logo{
+width:140px;
+border-radius:50%;
+box-shadow:0 0 40px #00ccff,0 0 80px #00ff88;
+animation:pulse 1.5s infinite alternate;
+}
+@keyframes pulse{
+from{transform:scale(1)}
+to{transform:scale(1.1)}
 }
 
-/* تأثير ضوء مع الماوس */
-.light{
+/* ====== Animated Background ====== */
+.bg-grid{
 position:fixed;
-width:400px;
-height:400px;
-background:radial-gradient(circle,rgba(0,204,255,0.25) 0%, transparent 70%);
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:0;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(0,255,150,0.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,255,150,0.05) 1px, transparent 1px);
+background-size:40px 40px;
+animation:moveGrid 10s linear infinite;
+z-index:-1;
+}
+@keyframes moveGrid{
+from{background-position:0 0}
+to{background-position:40px 40px}
 }
 
-.container{
-position:relative;
-z-index:1;
+/* ====== Hero ====== */
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 text-align:center;
-padding:80px 20px;
-animation:fadeUp 1.5s ease;
+padding:20px;
 }
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(40px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-/* اللوقو */
 .logo{
-width:240px;
+width:220px;
 border-radius:50%;
 border:4px solid #00ccff;
-box-shadow:0 0 40px #00ccff,0 0 100px #0088ff;
+box-shadow:0 0 40px #00ccff,0 0 100px #00ff88;
 margin-bottom:25px;
-transition:.4s;
 }
-.logo:hover{transform:scale(1.08) rotate(2deg)}
 
-/* العنوان */
 h1{
-font-size:70px;
+font-size:65px;
 font-weight:900;
-background:linear-gradient(90deg,#00ccff,#4ade80,#22d3ee);
+background:linear-gradient(90deg,#00ccff,#00ff88);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 .desc{
 color:#cbd5e1;
 font-size:22px;
-margin-bottom:50px;
+margin-bottom:40px;
 }
 
-/* كروت */
+/* Button */
+.btn{
+padding:18px 60px;
+border-radius:60px;
+background:linear-gradient(90deg,#00ccff,#00ff88);
+color:#001219;
+font-weight:bold;
+font-size:20px;
+text-decoration:none;
+box-shadow:0 0 40px #00ffcc;
+transition:.3s;
+}
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 70px #00ffcc;
+}
+
+/* Cards */
 .cards{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:40px;
-margin-top:40px;
+padding:80px 20px;
 }
-
 .card{
-width:330px;
+width:320px;
 padding:35px;
-border-radius:25px;
+border-radius:20px;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(25px);
-border:1px solid rgba(255,255,255,0.15);
-transition:.4s;
+backdrop-filter:blur(20px);
+border:1px solid rgba(0,255,150,0.2);
+transition:.3s;
 }
 .card:hover{
-transform:translateY(-15px) scale(1.05);
-box-shadow:0 0 60px rgba(0,204,255,.7);
+transform:translateY(-15px);
+box-shadow:0 0 50px rgba(0,255,150,.6);
 }
-
 .card h2{
-color:#00ccff;
+color:#00ffcc;
 margin-bottom:15px;
 }
 
-/* الأونر */
+/* Stats */
+.stats{
+display:flex;
+justify-content:center;
+gap:80px;
+padding:60px 20px;
+flex-wrap:wrap;
+}
+.stat{
+font-size:40px;
+font-weight:bold;
+color:#00ffcc;
+}
+.stat span{
+display:block;
+font-size:18px;
+color:#94a3b8;
+}
+
+/* Owner */
 .owner{
-margin-top:70px;
+text-align:center;
+padding:60px 20px;
 }
 .owner img{
 width:110px;
 height:110px;
 border-radius:50%;
 border:3px solid #00ccff;
-box-shadow:0 0 30px #00ccff;
+box-shadow:0 0 30px #00ffcc;
 margin-bottom:10px;
 }
 .owner span{
@@ -124,50 +173,41 @@ font-size:20px;
 color:#e2e8f0;
 }
 
-/* زر الدعوة */
-.btn{
-margin-top:50px;
-padding:18px 60px;
-border-radius:60px;
-background:linear-gradient(90deg,#00ccff,#0088ff);
-color:white;
-font-weight:bold;
-font-size:22px;
-text-decoration:none;
-box-shadow:0 0 50px #0088ff;
-transition:.3s;
-display:inline-block;
-}
-.btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 80px #00ccff;
-}
-
 footer{
-margin-top:80px;
-color:#94a3b8;
-font-size:14px;
+text-align:center;
+padding:30px;
+color:#64748b;
 }
 </style>
 </head>
 
 <body>
 
-<div class="light" id="light"></div>
+<!-- Loader -->
+<div id="loader">
+<img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476279552631246868/IMG_0600.png?ex=69a08bf9&is=699f3a79&hm=aa0a579016907cda3121f066930cf2135803bef6b1a196ec13aa348180eb07f3&" class="loader-logo">
+</div>
 
-<div class="container">
+<div class="bg-grid"></div>
+
+<section class="hero">
 
 <img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476279552631246868/IMG_0600.png?ex=69a08bf9&is=699f3a79&hm=aa0a579016907cda3121f066930cf2135803bef6b1a196ec13aa348180eb07f3&" class="logo">
 
 <h1>بوت نسخ السيرفرات الاحترافي</h1>
-
 <p class="desc">
 نسخ • استرجاع • أتمتة • قوة كاملة لإدارة سيرفرك ⚡<br>
 نظام مجاني + بريميوم باحترافية مطلقة
 </p>
 
-<div class="cards">
+<a href="https://discord.com/oauth2/authorize?client_id=1475212341380387026&permissions=8&integration_type=0&scope=bot"
+class="btn" target="_blank">
+🚀 دعوة البوت الآن
+</a>
 
+</section>
+
+<section class="cards">
 <div class="card">
 <h2>🆓 المميزات المجانية</h2>
 نسخ الإيموجيات<br>
@@ -181,30 +221,39 @@ font-size:14px;
 نسخ سيرفر كامل بالصلاحيات<br>
 استرجاع آخر نسخة احتياطية
 </div>
+</section>
 
-</div>
+<section class="stats">
+<div class="stat" data-target="1284">0<span>Servers</span></div>
+<div class="stat" data-target="52000">0<span>Users</span></div>
+<div class="stat" data-target="99">0<span>% Uptime</span></div>
+</section>
 
-<div class="owner">
+<section class="owner">
 <img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476280762239156335/IMG_0132.jpg?ex=69a08d19&is=699f3b99&hm=74cc307d7752f6961bb8ff7089c5f22a55ca194890528752ffad5406de3004ee&">
 <span>Owner Bot : @g5ta</span>
-</div>
-
-<a href="https://discord.com/oauth2/authorize?client_id=1475212341380387026&permissions=8&integration_type=0&scope=bot"
-class="btn" target="_blank">
-🚀 دعوة البوت الآن
-</a>
+</section>
 
 <footer>
 © 2026 Server Backup Ultra
 </footer>
 
-</div>
-
 <script>
-const light = document.getElementById("light");
-document.addEventListener("mousemove",(e)=>{
-light.style.left = e.pageX + "px";
-light.style.top = e.pageY + "px";
+/* Counter Animation */
+const counters = document.querySelectorAll('.stat');
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.getAttribute('data-target');
+const count=+counter.innerText;
+const inc=target/100;
+if(count<target){
+counter.innerText=Math.ceil(count+inc);
+setTimeout(update,20);
+}else{
+counter.innerText=target;
+}
+};
+update();
 });
 </script>
 
