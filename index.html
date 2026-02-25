@@ -13,20 +13,52 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Cairo',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#020617;
+background:#030712;
 color:white;
 overflow-x:hidden;
 }
 
 /* خلفية متحركة */
-#particles{
+body::before{
+content:"";
 position:fixed;
-width:100%;
-height:100%;
+width:200%;
+height:200%;
+background:radial-gradient(circle at 30% 30%, #00ffcc22, transparent 40%),
+radial-gradient(circle at 70% 70%, #22d3ee22, transparent 40%);
+animation:moveBg 15s linear infinite;
 z-index:-1;
+}
+
+@keyframes moveBg{
+0%{transform:translate(0,0)}
+50%{transform:translate(-10%,-10%)}
+100%{transform:translate(0,0)}
+}
+
+/* Navbar */
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(15px);
+z-index:999;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
 }
 
 /* Hero */
@@ -38,27 +70,21 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
-animation:fadeIn 1.5s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(40px)}
-to{opacity:1;transform:translateY(0)}
 }
 
 .logo{
-width:200px;
+width:220px;
 margin-bottom:30px;
 filter:drop-shadow(0 0 40px #00ffcc);
-transition:0.4s;
+transition:0.5s;
 }
 
 .logo:hover{
-transform:scale(1.1) rotate(5deg);
+transform:scale(1.1) rotate(3deg);
 }
 
 h1{
-font-size:60px;
+font-size:65px;
 font-weight:900;
 background:linear-gradient(90deg,#00ffcc,#22d3ee,#4ade80);
 -webkit-background-clip:text;
@@ -68,80 +94,91 @@ margin-bottom:15px;
 
 .subtitle{
 color:#94a3b8;
-font-size:20px;
+font-size:22px;
 margin-bottom:50px;
 }
 
-.cards{
-display:flex;
-gap:30px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.card{
-width:320px;
-padding:35px;
-border-radius:25px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.1);
-box-shadow:0 0 40px rgba(0,255,200,0.1);
-transition:0.4s;
-}
-
-.card:hover{
-transform:translateY(-15px) scale(1.05);
-box-shadow:0 0 60px rgba(0,255,200,0.6);
-}
-
-.card h2{
-margin-bottom:15px;
-color:#00ffcc;
-}
-
 .btn{
-margin-top:50px;
-padding:15px 40px;
+padding:15px 45px;
 border-radius:50px;
 background:linear-gradient(90deg,#00ffcc,#22d3ee);
 color:#000;
 font-weight:bold;
 text-decoration:none;
 font-size:18px;
-box-shadow:0 0 30px rgba(0,255,200,0.7);
+box-shadow:0 0 40px rgba(0,255,200,0.6);
 transition:0.3s;
 }
 
 .btn:hover{
 transform:scale(1.1);
-box-shadow:0 0 60px rgba(0,255,200,1);
+box-shadow:0 0 70px rgba(0,255,200,1);
 }
 
-footer{
-margin-top:80px;
+/* Features */
+.features{
+padding:100px 20px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.card{
+width:300px;
 padding:30px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-15px);
+box-shadow:0 0 60px rgba(0,255,200,0.4);
+}
+
+.card h2{
+color:#00ffcc;
+margin-bottom:15px;
+}
+
+/* Footer */
+footer{
+text-align:center;
+padding:40px;
 color:#64748b;
-font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
+<nav>
+<div><strong>Server Backup</strong></div>
+<div>
+<a href="#features">المميزات</a>
+<a href="#">دعوة البوت</a>
+</div>
+</nav>
 
 <section class="hero">
 
-<img src="logo.png" class="logo">
+<!-- حط رابط شعارك هنا -->
+<img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476279552631246868/IMG_0600.png?ex=69a08bf9&is=699f3a79&hm=aa0a579016907cda3121f066930cf2135803bef6b1a196ec13aa348180eb07f3&" class="logo">
 
 <h1>بوت نسخ السيرفرات الاحترافي</h1>
 <p class="subtitle">نسخ كامل • استرجاع فوري • أتمتة احترافية</p>
 
-<div class="cards">
+<a href="#" class="btn">🚀 دعوة البوت الآن</a>
+
+</section>
+
+<section class="features" id="features">
 
 <div class="card">
-<h2>🆓 المجاني</h2>
+<h2>🆓 النسخة المجانية</h2>
 نسخ الإيموجيات<br>
 نسخ الملصقات<br>
 رياكشن تلقائي<br>
@@ -154,73 +191,18 @@ font-size:14px;
 استرجاع آخر نسخة احتياطية
 </div>
 
+<div class="card">
+<h2>⚡ أداء خارق</h2>
+سرعة تنفيذ عالية<br>
+حماية كاملة<br>
+نظام احتياطي ذكي
 </div>
 
-<a href="#" class="btn">🚀 دعوة البوت الآن</a>
+</section>
 
 <footer>
 © 2026 Server Backup Ultra
 </footer>
-
-</section>
-
-<script>
-// particles effect
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particlesArray = [];
-
-class Particle {
-constructor(){
-this.x = Math.random() * canvas.width;
-this.y = Math.random() * canvas.height;
-this.size = Math.random() * 3 + 1;
-this.speedX = Math.random() * 1 - 0.5;
-this.speedY = Math.random() * 1 - 0.5;
-}
-update(){
-this.x += this.speedX;
-this.y += this.speedY;
-if(this.x > canvas.width || this.x < 0) this.speedX *= -1;
-if(this.y > canvas.height || this.y < 0) this.speedY *= -1;
-}
-draw(){
-ctx.fillStyle = "#00ffcc";
-ctx.beginPath();
-ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-ctx.fill();
-}
-}
-
-function init(){
-particlesArray = [];
-for(let i=0;i<120;i++){
-particlesArray.push(new Particle());
-}
-}
-
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particlesArray.forEach(p=>{
-p.update();
-p.draw();
-});
-requestAnimationFrame(animate);
-}
-
-init();
-animate();
-
-window.addEventListener("resize",()=>{
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-init();
-});
-</script>
 
 </body>
 </html>
