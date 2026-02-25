@@ -14,51 +14,42 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ====== Intro Loader ====== */
-#loader{
+/* ===== Navbar ===== */
+.navbar{
 position:fixed;
+top:0;
 width:100%;
-height:100%;
-background:#000814;
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
-flex-direction:column;
-z-index:9999;
-animation:fadeOut 1.5s ease forwards;
-animation-delay:2.5s;
-}
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
-
-.loader-logo{
-width:140px;
-border-radius:50%;
-box-shadow:0 0 40px #00ccff,0 0 80px #00ff88;
-animation:pulse 1.5s infinite alternate;
-}
-@keyframes pulse{
-from{transform:scale(1)}
-to{transform:scale(1.1)}
+padding:20px 50px;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(15px);
+z-index:1000;
 }
 
-/* ====== Animated Background ====== */
-.bg-grid{
-position:fixed;
-width:100%;
-height:100%;
-background-image:
-linear-gradient(rgba(0,255,150,0.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,255,150,0.05) 1px, transparent 1px);
-background-size:40px 40px;
-animation:moveGrid 10s linear infinite;
-z-index:-1;
-}
-@keyframes moveGrid{
-from{background-position:0 0}
-to{background-position:40px 40px}
+.navbar .title{
+font-size:22px;
+font-weight:bold;
+color:#00ffcc;
 }
 
-/* ====== Hero ====== */
+.premium-btn{
+padding:12px 35px;
+border-radius:50px;
+background:linear-gradient(90deg,#00ccff,#00ff88);
+color:#001219;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 0 25px #00ffcc;
+transition:.3s;
+}
+.premium-btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 50px #00ffcc;
+}
+
+/* ===== Hero ===== */
 .hero{
 min-height:100vh;
 display:flex;
@@ -67,10 +58,11 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
+padding-top:120px;
 }
 
 .logo{
-width:220px;
+width:200px;
 border-radius:50%;
 border:4px solid #00ccff;
 box-shadow:0 0 40px #00ccff,0 0 100px #00ff88;
@@ -78,7 +70,7 @@ margin-bottom:25px;
 }
 
 h1{
-font-size:65px;
+font-size:55px;
 font-weight:900;
 background:linear-gradient(90deg,#00ccff,#00ff88);
 -webkit-background-clip:text;
@@ -88,89 +80,60 @@ margin-bottom:15px;
 
 .desc{
 color:#cbd5e1;
-font-size:22px;
+font-size:20px;
+margin-bottom:30px;
+}
+
+/* ===== Premium Section ===== */
+.premium{
+padding:100px 20px;
+text-align:center;
+}
+
+.premium-box{
+max-width:650px;
+margin:auto;
+padding:50px;
+border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+border:1px solid rgba(0,255,150,0.3);
+box-shadow:0 0 50px rgba(0,255,150,.3);
+}
+
+.premium-box h2{
+font-size:35px;
+margin-bottom:25px;
+color:#00ffcc;
+}
+
+.premium-box ul{
+list-style:none;
+text-align:right;
 margin-bottom:40px;
 }
 
-/* Button */
-.btn{
-padding:18px 60px;
+.premium-box li{
+margin-bottom:15px;
+font-size:18px;
+color:#e2e8f0;
+}
+
+.buy-btn{
+padding:16px 50px;
 border-radius:60px;
 background:linear-gradient(90deg,#00ccff,#00ff88);
 color:#001219;
 font-weight:bold;
-font-size:20px;
+font-size:18px;
 text-decoration:none;
 box-shadow:0 0 40px #00ffcc;
 transition:.3s;
+display:inline-block;
 }
-.btn:hover{
+.buy-btn:hover{
 transform:scale(1.08);
 box-shadow:0 0 70px #00ffcc;
-}
-
-/* Cards */
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:40px;
-padding:80px 20px;
-}
-.card{
-width:320px;
-padding:35px;
-border-radius:20px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-border:1px solid rgba(0,255,150,0.2);
-transition:.3s;
-}
-.card:hover{
-transform:translateY(-15px);
-box-shadow:0 0 50px rgba(0,255,150,.6);
-}
-.card h2{
-color:#00ffcc;
-margin-bottom:15px;
-}
-
-/* Stats */
-.stats{
-display:flex;
-justify-content:center;
-gap:80px;
-padding:60px 20px;
-flex-wrap:wrap;
-}
-.stat{
-font-size:40px;
-font-weight:bold;
-color:#00ffcc;
-}
-.stat span{
-display:block;
-font-size:18px;
-color:#94a3b8;
-}
-
-/* Owner */
-.owner{
-text-align:center;
-padding:60px 20px;
-}
-.owner img{
-width:110px;
-height:110px;
-border-radius:50%;
-border:3px solid #00ccff;
-box-shadow:0 0 30px #00ffcc;
-margin-bottom:10px;
-}
-.owner span{
-display:block;
-font-size:20px;
-color:#e2e8f0;
 }
 
 footer{
@@ -183,79 +146,41 @@ color:#64748b;
 
 <body>
 
-<!-- Loader -->
-<div id="loader">
-<img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476279552631246868/IMG_0600.png?ex=69a08bf9&is=699f3a79&hm=aa0a579016907cda3121f066930cf2135803bef6b1a196ec13aa348180eb07f3&" class="loader-logo">
+<!-- Navbar -->
+<div class="navbar">
+<div class="title">Server Backup Ultra</div>
+<a href="#premium" class="premium-btn">اشتراك بريميوم</a>
 </div>
 
-<div class="bg-grid"></div>
-
+<!-- Hero -->
 <section class="hero">
-
-<img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476279552631246868/IMG_0600.png?ex=69a08bf9&is=699f3a79&hm=aa0a579016907cda3121f066930cf2135803bef6b1a196ec13aa348180eb07f3&" class="logo">
-
+<img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476279552631246868/IMG_0600.png" class="logo">
 <h1>بوت نسخ السيرفرات الاحترافي</h1>
 <p class="desc">
-نسخ • استرجاع • سريع جداً  • قوة كاملة لإدارة سيرفرك ⚡<br>
-نظام مجاني + بريميوم باحترافية مطلقة
+نظام متكامل لنسخ واسترجاع السيرفرات بأعلى مستوى أمان واحترافية ⚡
 </p>
+</section>
 
-<a href="https://discord.com/oauth2/authorize?client_id=1475212341380387026&permissions=8&integration_type=0&scope=bot"
-class="btn" target="_blank">
-🚀 دعوة البوت الآن
+<!-- Premium Section -->
+<section class="premium" id="premium">
+<div class="premium-box">
+<h2>👑 باقة البريميوم</h2>
+
+<ul>
+<li>1️⃣ نسخ سيرفر بالكامل (صلاحيات الكاتجوري - صلاحيات الرومات - صلاحيات الرتب - الإيموجيات)</li>
+<li>2️⃣ رجوع آخر نسخة تمت بنجاح</li>
+</ul>
+
+<a href="https://discord.gg/dv-sr" target="_blank" class="buy-btn">
+🚀 للشراء توجه إلى السيرفر
 </a>
 
-</section>
-
-<section class="cards">
-<div class="card">
-<h2>🆓 المميزات المجانية</h2>
-نسخ الإيموجيات<br>
-نسخ الملصقات<br>
-رياكشن تلقائي<br>
-خط تلقائي
 </div>
-
-<div class="card">
-<h2>👑 البريميوم</h2>
-نسخ سيرفر كامل بالصلاحيات<br>
-استرجاع آخر نسخة احتياطية
-</div>
-</section>
-
-<section class="stats">
-<div class="stat" data-target="1284">0<span>Servers</span></div>
-<div class="stat" data-target="52000">0<span>Users</span></div>
-<div class="stat" data-target="99">0<span>% Uptime</span></div>
-</section>
-
-<section class="owner">
-<img src="https://cdn.discordapp.com/attachments/1447147044014788609/1476280762239156335/IMG_0132.jpg?ex=69a08d19&is=699f3b99&hm=74cc307d7752f6961bb8ff7089c5f22a55ca194890528752ffad5406de3004ee&">
-<span>Owner Bot : @g5ta</span>
 </section>
 
 <footer>
 © 2026 Server Backup Ultra
 </footer>
-
-<script>
-/* Counter Animation */
-const counters = document.querySelectorAll('.stat');
-counters.forEach(counter=>{
-const update=()=>{
-const target=+counter.getAttribute('data-target');
-const count=+counter.innerText;
-const inc=target/100;
-if(count<target){
-counter.innerText=Math.ceil(count+inc);
-setTimeout(update,20);
-}else{
-counter.innerText=target;
-}
-};
-update();
-});
-</script>
 
 </body>
 </html>
